@@ -48,7 +48,8 @@ public class PluginLoadBalanceConfiguration {
         if (this.propertiesFactory.isSet(IRule.class, serviceId)) {
             return this.propertiesFactory.get(IRule.class, config, serviceId);
         }
-
+        //初始化 rule
+        //ZoneAvoidanceRuleDecorator  详细看 他的 choose 方法
         ZoneAvoidanceRuleDecorator rule = new ZoneAvoidanceRuleDecorator();
         rule.initWithNiwsConfig(config);
 

@@ -54,6 +54,7 @@ public class StrategyLoadBalanceConfiguration {
 
         boolean zoneAvoidanceRuleEnabled = environment.getProperty(StrategyConstant.SPRING_APPLICATION_STRATEGY_ZONE_AVOIDANCE_RULE_ENABLED, Boolean.class, Boolean.TRUE);
         if (zoneAvoidanceRuleEnabled) {
+            //核心类 重新负载均衡策略
             DiscoveryEnabledZoneAvoidanceRule discoveryEnabledRule = new DiscoveryEnabledZoneAvoidanceRule();
             discoveryEnabledRule.initWithNiwsConfig(config);
 

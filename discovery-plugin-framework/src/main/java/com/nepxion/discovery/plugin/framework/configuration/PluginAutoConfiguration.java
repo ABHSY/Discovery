@@ -31,6 +31,7 @@ import com.nepxion.eventbus.annotation.EnableEventBus;
 
 @Configuration
 @EnableEventBus
+//各种插件的初始化 publisher eventbus  aware 等等
 public class PluginAutoConfiguration {
     @Bean
     public PluginContextAware pluginContextAware() {

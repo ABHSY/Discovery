@@ -22,6 +22,13 @@ import com.nepxion.discovery.plugin.framework.constant.EurekaConstant;
 import com.nepxion.discovery.plugin.framework.decorator.EurekaServiceRegistryDecorator;
 import com.nepxion.discovery.plugin.framework.util.MetadataUtil;
 
+/**
+ * 用于加载上下文 在springBoot springApplication 中的 refreshContext(context);
+ * 调用链接 ->
+ * prepareContext(context, environment, listeners, applicationArguments,printedBanner);
+ * applyInitializers(context);
+ * 之前执行 Initialization 方法
+ */
 public class EurekaApplicationContextInitializer extends PluginApplicationContextInitializer {
     @Override
     protected Object afterInitialization(ConfigurableApplicationContext applicationContext, Object bean, String beanName) throws BeansException {
@@ -31,7 +38,7 @@ public class EurekaApplicationContextInitializer extends PluginApplicationContex
             return new EurekaServiceRegistryDecorator(eurekaServiceRegistry, applicationContext);
         } else if (bean instanceof EurekaInstanceConfigBean) {
             ConfigurableEnvironment environment = applicationContext.getEnvironment();
-
+            //为了添加默认配置
             EurekaInstanceConfigBean eurekaInstanceConfig = (EurekaInstanceConfigBean) bean;
             eurekaInstanceConfig.setPreferIpAddress(true);
 

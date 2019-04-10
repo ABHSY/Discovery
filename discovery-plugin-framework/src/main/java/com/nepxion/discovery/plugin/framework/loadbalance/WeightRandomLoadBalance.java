@@ -45,6 +45,7 @@ public class WeightRandomLoadBalance {
         return weightFilterEntity;
     }
 
+    //最后一层过滤 返回符合标准的Server
     public Server choose(List<Server> serverList, WeightFilterEntity weightFilterEntity) {
         if (CollectionUtils.isEmpty(serverList)) {
             return null;

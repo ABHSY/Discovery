@@ -19,6 +19,7 @@ import com.nepxion.discovery.plugin.framework.adapter.PluginAdapter;
 import com.nepxion.discovery.plugin.framework.constant.EurekaConstant;
 
 @Configuration
+//初始化ribbon 负载均衡策略
 @RibbonClients(defaultConfiguration = { PluginLoadBalanceConfiguration.class, EurekaLoadBalanceConfiguration.class })
 public class EurekaAutoConfiguration {
     static {

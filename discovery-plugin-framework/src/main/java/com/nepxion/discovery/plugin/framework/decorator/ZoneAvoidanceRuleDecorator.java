@@ -35,6 +35,7 @@ public class ZoneAvoidanceRuleDecorator extends ZoneAvoidanceRule {
 
     @Override
     public Server choose(Object key) {
+        //拿到实现配置好的权重   想看具体在choose方法中
         WeightFilterEntity weightFilterEntity = weightRandomLoadBalance.getWeightFilterEntity();
         if (weightFilterEntity == null) {
             return super.choose(key);
@@ -43,10 +44,11 @@ public class ZoneAvoidanceRuleDecorator extends ZoneAvoidanceRule {
         if (!weightFilterEntity.hasWeight()) {
             return super.choose(key);
         }
-
+        //拿到所有的Server 进行过滤
         List<Server> eligibleServers = getPredicate().getEligibleServers(getLoadBalancer().getAllServers(), key);
 
         try {
+            //返回符合的server
             return weightRandomLoadBalance.choose(eligibleServers, weightFilterEntity);
         } catch (Exception e) {
             return super.choose(key);
