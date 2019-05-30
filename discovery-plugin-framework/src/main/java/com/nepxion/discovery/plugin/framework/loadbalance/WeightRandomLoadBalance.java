@@ -70,6 +70,7 @@ public class WeightRandomLoadBalance {
         int[][] weightHolder = new int[weights.length][2];
         // 总权重
         int totalWeight = 0;
+        int beforeTotalWeight = 0;
         // 赋值次序号和区间值累加的数组值，从小到大排列
         // 例如，对于权重分别为20，40， 60的三个服务，将形成[0, 20)，[20, 60)，[60, 120]三个区间
         for (int i = 0; i < weights.length; i++) {
@@ -79,7 +80,8 @@ public class WeightRandomLoadBalance {
 
             totalWeight += weights[i];
             weightHolder[i][0] = i;
-            weightHolder[i][1] = totalWeight;
+            weightHolder[i][1] = beforeTotalWeight;
+            beforeTotalWeight = totalWeight;
         }
 
         // 获取介于0(含)和n(不含)伪随机，均匀分布的int值
