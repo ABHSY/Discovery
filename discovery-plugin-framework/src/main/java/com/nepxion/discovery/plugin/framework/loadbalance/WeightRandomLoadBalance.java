@@ -79,8 +79,8 @@ public class WeightRandomLoadBalance {
             }
 
             totalWeight += weights[i];
-            weightHolder[i][0] = i;
-            weightHolder[i][1] = beforeTotalWeight;
+            weightHolder[i][0] = beforeTotalWeight;
+            weightHolder[i][1] = totalWeight;
             beforeTotalWeight = totalWeight;
         }
 
