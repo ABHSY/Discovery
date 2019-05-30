@@ -21,6 +21,7 @@ import com.nepxion.discovery.plugin.framework.loadbalance.WeightRandomLoadBalanc
 import com.netflix.loadbalancer.Server;
 import com.netflix.loadbalancer.ZoneAvoidanceRule;
 
+//核心类  重写ribbon集成Eureka的负载均衡策略
 public class ZoneAvoidanceRuleDecorator extends ZoneAvoidanceRule {
     @Autowired
     private PluginAdapter pluginAdapter;
